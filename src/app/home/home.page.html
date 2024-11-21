@@ -1,25 +1,40 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Inbox
+    <ion-title class="title">
+      <ion-icon name="calendar"></ion-icon>
+        ToDo Manager
+      <ion-icon name="calendar"></ion-icon>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
-    <ion-refresher-content></ion-refresher-content>
-  </ion-refresher>
   
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">
-        Inbox
-      </ion-title>
-    </ion-toolbar>
-  </ion-header>
-  
+   <!--
+  <div class="grid-container">
+    <div class="grid-item-left">
+      
+    </div>
+
+    <div class="grid-item-right">
+      <ion-fab>
+        <ion-fab-button>
+          <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+    </div>
+  </div>
+  -->
+
   <ion-list>
-    <app-message *ngFor="let message of getMessages()" [message]="message"></app-message>
+    <ion-list-header>
+      <ion-label>To Do List</ion-label>
+    </ion-list-header>
+
+    <!-- *ngFor = Angular for-loop -->
+    <ion-item *ngFor="let todo of todoList">
+      {{ todo }}
+    </ion-item>
+
   </ion-list>
 </ion-content>

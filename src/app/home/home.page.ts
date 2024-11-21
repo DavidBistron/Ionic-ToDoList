@@ -1,28 +1,24 @@
+import { Component } from '@angular/core';
+import { addIcons } from 'ionicons';
+import { logoIonic, calendar, add } from 'ionicons/icons';
+import { IonHeader, IonIcon, IonToolbar, IonTitle, IonContent, IonButton, IonCheckbox, IonGrid, IonRow, IonCol, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonCard, IonFab, IonFabButton, IonList, IonListHeader, IonLabel, IonItem } from '@ionic/angular/standalone';
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
-import { RefresherCustomEvent, IonHeader, IonToolbar, IonTitle, IonContent, IonRefresher, IonRefresherContent, IonList } from '@ionic/angular/standalone';
-import { MessageComponent } from '../message/message.component';
 
-import { DataService, Message } from '../services/data.service';
-
+// Used components
 @Component({
+  // html, scss names
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
   standalone: true,
-  imports: [CommonModule, IonHeader, IonToolbar, IonTitle, IonContent, IonRefresher, IonRefresherContent, IonList, MessageComponent],
+  imports: [CommonModule, IonHeader, IonIcon, IonToolbar, IonTitle, IonContent, IonButton, IonCheckbox, IonGrid, IonRow, IonCol, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonCard, IonFab, IonFabButton, IonList, IonListHeader, IonLabel, IonItem],
 })
+
+// Main Class for handling functions 
 export class HomePage {
-  private data = inject(DataService);
-  constructor() {}
-
-  refresh(ev: any) {
-    setTimeout(() => {
-      (ev as RefresherCustomEvent).detail.complete();
-    }, 3000);
-  }
-
-  getMessages(): Message[] {
-    return this.data.getMessages();
+  todoList: string[] = ['Milch', 'Kuchen', 'Essen'];
+  
+  constructor() {
+    addIcons({calendar,add,logoIonic});
   }
 }
