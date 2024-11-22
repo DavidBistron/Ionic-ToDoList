@@ -1,40 +1,56 @@
+<!-- Header -->
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title class="title">
-      <ion-icon name="calendar"></ion-icon>
-        ToDo Manager
-      <ion-icon name="calendar"></ion-icon>
+    <ion-title class="title"> 
+      ToDo Manager
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
+<!-- Body/Content -->
 <ion-content [fullscreen]="true">
-  
-   <!--
-  <div class="grid-container">
-    <div class="grid-item-left">
-      
-    </div>
 
-    <div class="grid-item-right">
-      <ion-fab>
-        <ion-fab-button>
-          <ion-icon name="add"></ion-icon>
-        </ion-fab-button>
-      </ion-fab>
-    </div>
+  <!-- ToDos displayed as Ion-Cards -->
+  <ion-card *ngFor="let todo of todoList" [ngClass]="{'done': todo.isDone, 'undone': !todo.isDone, 'not-done': !todo.isDone}">
+    
+    <!-- Title and subtitle of ToDo - displayed in Ion-Card -->
+    <ion-card-header>
+      <ion-card-title> {{todo.title}} </ion-card-title>
+      <ion-card-subtitle> {{todo.subtitle}} </ion-card-subtitle>
+    </ion-card-header>
+    
+    <!-- Content of ToDo - displayed in Ion-Card -->
+    <ion-card-content>
+      {{ todo.content }}
+    </ion-card-content>
+
+    <!-- Done and delete Buttons - displayed inside Ion-Card -->
+    <ion-button color="light" *ngFor="let action of todo.actions" (click)="handleAction(action, todo)">
+      {{ action }}
+    </ion-button>
+  
+  </ion-card>
+
+  <div class="btn-new-todo">
+    <ion-button id="present-alert" color="light" class="addButton" (click)="addToDo()">New ToDo</ion-button>
   </div>
+  
+  <!-- 
+  <ion-alert
+      trigger="present-alert"
+      header="Enter ToDo Infos"
+      [buttons]="alertButtons"
+      [inputs]="alertInputs"
+      >
+    </ion-alert>
   -->
 
-  <ion-list>
-    <ion-list-header>
-      <ion-label>To Do List</ion-label>
-    </ion-list-header>
+  <!-- Add new ToDo Button 
+  <ion-fab slot="fixed" vertical="bottom" horizontal="center" id="present-alert">
+    <ion-fab-button color="secondary" class="addButton" (click)="addToDo()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  -->
 
-    <!-- *ngFor = Angular for-loop -->
-    <ion-item *ngFor="let todo of todoList">
-      {{ todo }}
-    </ion-item>
-
-  </ion-list>
 </ion-content>

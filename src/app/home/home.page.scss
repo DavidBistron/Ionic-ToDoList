@@ -1,3 +1,41 @@
 .title {
   text-align: center;
 }
+
+.btn-new-todo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.done {
+  background-color: #d4edda;
+  border-left: 5px solid #28a745;
+}
+
+.not-done {
+  background-color: #f8d7da;
+  border-left: 5px solid #dc3545;
+}
+
+ion-grid {
+  --ion-grid-width: 50%;
+
+  --ion-grid-width-xs: 50%;
+  --ion-grid-width-sm: 288px;
+  --ion-grid-width-md: 384px;
+  --ion-grid-width-lg: 480px;
+  --ion-grid-width-xl: 570px;
+}
+
+ion-card {
+  width: 60%;
+  margin: 2em auto;
+
+}
+
+ion-fab {
+  color: #87d361;
+  margin-top: var(--ion-safe-area-top, 0);
+  margin-bottom: var(--ion-safe-area-bottom, 0);
+}
