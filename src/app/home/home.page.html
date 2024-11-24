@@ -1,9 +1,29 @@
 <!-- Header -->
 <ion-header [translucent]="true">
   <ion-toolbar>
+
+    <!-- Title -->
     <ion-title class="title"> 
       ToDo Manager
     </ion-title>
+
+    <!-- Navigation -->
+    <!-- Segment 1 -->
+    <ion-segment [(ngModel)]="filterStatus">
+      <ion-segment-button value="all">
+        <ion-label>All</ion-label>
+      </ion-segment-button>
+
+      <!-- Segment 2 -->
+      <ion-segment-button value="done">
+        <ion-label>Done</ion-label>
+      </ion-segment-button>
+
+      <!-- Segment 3 -->
+      <ion-segment-button value="undone">
+        <ion-label>Undone</ion-label>
+      </ion-segment-button>
+    </ion-segment>
   </ion-toolbar>
 </ion-header>
 
@@ -11,7 +31,9 @@
 <ion-content [fullscreen]="true">
 
   <!-- ToDos displayed as Ion-Cards -->
-  <ion-card *ngFor="let todo of todoList" [ngClass]="{'done': todo.isDone, 'undone': !todo.isDone, 'not-done': !todo.isDone}">
+  <ion-card *ngFor="let todo of filteredTodos" [ngClass]="{'done': todo.isDone, 'undone': !todo.isDone}"> 
+    
+    <!-- ion-card *ngFor="let todo of todoList" [ngClass]="{'done': todo.isDone, 'undone': !todo.isDone, 'not-done': !todo.isDone}" -->
     
     <!-- Title and subtitle of ToDo - displayed in Ion-Card -->
     <ion-card-header>
@@ -32,25 +54,15 @@
   </ion-card>
 
   <div class="btn-new-todo">
-    <ion-button id="present-alert" color="light" class="addButton" (click)="addToDo()">New ToDo</ion-button>
-  </div>
-  
-  <!-- 
-  <ion-alert
+    <ion-button color="light" class="addButton" (click)="presentAlert()">
+      New ToDo
+    </ion-button>
+    <ion-alert
       trigger="present-alert"
-      header="Enter ToDo Infos"
+      header="Enter new ToDo"
       [buttons]="alertButtons"
       [inputs]="alertInputs"
-      >
-    </ion-alert>
-  -->
-
-  <!-- Add new ToDo Button 
-  <ion-fab slot="fixed" vertical="bottom" horizontal="center" id="present-alert">
-    <ion-fab-button color="secondary" class="addButton" (click)="addToDo()">
-      <ion-icon name="add"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
-  -->
+    ></ion-alert>
+  </div>
 
 </ion-content>
