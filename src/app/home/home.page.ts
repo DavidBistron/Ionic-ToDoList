@@ -1,9 +1,10 @@
+// Imports
 import { Component } from '@angular/core';
 import { AlertController, IonAlert, IonText, IonHeader, IonInput, IonReorderGroup, IonReorder, IonSegment, IonSegmentButton, IonIcon, IonToolbar, IonTitle, IonContent, IonButton, IonCheckbox, IonGrid, IonRow, IonCol, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonCard, IonFab, IonFabButton, IonList, IonListHeader, IonLabel, IonItem } from '@ionic/angular/standalone';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-// Comment +++++++++++++++++++++
+// TS Interface Definition --> defines form of ToDo element
 export interface ToDo {
   title: string;
   subtitle: string;
@@ -23,10 +24,11 @@ export interface ToDo {
 
 // Main Class for handling functions 
 export class HomePage {
-  // Filter Variable - display all by default
+  // Filter Variable - display all card elements by default
   filterStatus: string = 'all';
   
   // Constructor
+  // alertController --> necessary for access to AlertController and to manage alerts
   constructor(private alertController: AlertController) {}
 
   // ToDo List with default values
@@ -59,8 +61,7 @@ export class HomePage {
     },
   ];
 
-
-  // Methode zum Anzeigen des Alerts
+  // Method for displaying alert dialog for user input
   async presentAlert() {
     const alert = await this.alertController.create({
       header: 'Enter new ToDo',
@@ -74,8 +75,6 @@ export class HomePage {
           text: 'OK',
           handler: (data) => {
             this.addToDo(data);
-
-            alert.dismiss();
           },
         },
       ],
@@ -83,7 +82,7 @@ export class HomePage {
     await alert.present();
   }
 
-  // Add new ToDo
+  // Function: add new ToDo
   addToDo(data: { title: string; subtitle: string; content: string; }) {
     const newTodo = {
       title: data.title,
@@ -95,7 +94,7 @@ export class HomePage {
     this.todoList.push(newTodo);
   }
 
-  // Funktion zur Handhabung von Aktionen
+  // Function: handleAction, what should happen when certain btn is pressed?
   handleAction(action: string, todo: ToDo) {
     if (action === 'Delete') {
       this.deleteToDo(todo);
@@ -106,7 +105,7 @@ export class HomePage {
     }
   }
 
-  // Function: Delete ToDo 
+  // Function: delete ToDo 
   deleteToDo(todoToDelete: ToDo) {
     const index = this.todoList.indexOf(todoToDelete);
     if (index > -1) {
@@ -114,17 +113,17 @@ export class HomePage {
     }
   }
 
-  // Function: Mark ToDo as done = green color
+  // Function: mark ToDo as done = green color
   markAsDone(todoToMark: ToDo) {
     todoToMark.isDone = true;
   } 
 
-  // Function: Mark ToDo as undone = red color
+  // Function: mark ToDo as undone = red color
   markAsUndone(todoToMark: ToDo) {
     todoToMark.isDone = false;
   }
 
-  // Function for sort: shows only done elements 
+  // Function for sort: only display done or undone elements, default display all 
   get filteredTodos() {
     if (this.filterStatus === 'done') {
       return this.todoList.filter(todo => todo.isDone);

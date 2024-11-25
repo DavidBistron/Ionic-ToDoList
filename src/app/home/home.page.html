@@ -31,9 +31,8 @@
 <ion-content [fullscreen]="true">
 
   <!-- ToDos displayed as Ion-Cards -->
+  <!-- *ngFor = for loop Angular // [ngClass] = apply CSS dynamically to HTML -->
   <ion-card *ngFor="let todo of filteredTodos" [ngClass]="{'done': todo.isDone, 'undone': !todo.isDone}"> 
-    
-    <!-- ion-card *ngFor="let todo of todoList" [ngClass]="{'done': todo.isDone, 'undone': !todo.isDone, 'not-done': !todo.isDone}" -->
     
     <!-- Title and subtitle of ToDo - displayed in Ion-Card -->
     <ion-card-header>
@@ -53,6 +52,7 @@
   
   </ion-card>
 
+   <!-- Add new ToDo btn; alert for user input -->
   <div class="btn-new-todo">
     <ion-button color="light" class="addButton" (click)="presentAlert()">
       New ToDo
