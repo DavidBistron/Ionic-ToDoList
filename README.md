@@ -21,3 +21,7 @@ This app allows you to add, delete and sort your ToDos. Mark ToDos as done (= gr
 *Add new entries*<br>
 
 <hr>
+
+# Author
+
+David Bistron
